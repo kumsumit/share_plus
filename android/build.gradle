@@ -48,14 +48,8 @@ android {
     }
 
     dependencies {
-<<<<<<< HEAD
-        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-        implementation 'androidx.core:core-ktx:1.13.1'
-        implementation 'androidx.annotation:annotation:1.8.2'
-=======
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
         implementation 'androidx.core:core-ktx:1.13.1'
-        implementation 'androidx.annotation:annotation:1.8.1'
->>>>>>> refs/remotes/origin/main
+        implementation 'androidx.annotation:annotation:1.8.2'
     }
 }
