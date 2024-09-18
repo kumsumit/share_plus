@@ -1,3 +1,20 @@
+## 10.0.2
+
+ - **FIX**(share_plus): [#2910](https://github.com/fluttercommunity/plus_plugins/issues/2910) Handle user dismissing dialog on shareUri() in web ([#3175](https://github.com/fluttercommunity/plus_plugins/issues/3175)). ([bba78118](https://github.com/fluttercommunity/plus_plugins/commit/bba781187b4af5682331ed90929c61c13137809a))
+
+## 10.0.1
+
+- **CHORE**(share_plus): Update to package:web to ^1.0.0 ([#3105](https://github.com/fluttercommunity/plus_plugins/pull/3105)). ([1f23910a](https://github.com/fluttercommunity/plus_plugins/commit/1f23910ab50fef2e499054f35cedfd14c578976a))
+
+## 10.0.0
+
+> Note: This release has breaking changes.
+
+ - **BREAKING** **FEAT**(share_plus): Introduce optional parameter `nameOverride` to `shareXFiles`. ([#3077](https://github.com/fluttercommunity/plus_plugins/issues/3077)). ([f483bce7](https://github.com/fluttercommunity/plus_plugins/commit/f483bce77f50fc03e8c6c969864dd978e46f32da))
+ - **REFACTOR**(all): Remove website files, configs, mentions ([#3018](https://github.com/fluttercommunity/plus_plugins/issues/3018)). ([ecc57146](https://github.com/fluttercommunity/plus_plugins/commit/ecc57146aa8c6b1c9c332169d3cc2205bc4a700f))
+ - **FIX**(all): changed homepage url in pubspec.yaml ([#3099](https://github.com/fluttercommunity/plus_plugins/issues/3099)). ([66613656](https://github.com/fluttercommunity/plus_plugins/commit/66613656a85c176ba2ad337e4d4943d1f4171129))
+ - **DOCS**(share_plus): Update README.md ([#2903](https://github.com/fluttercommunity/plus_plugins/issues/2903)). ([2a547eb3](https://github.com/fluttercommunity/plus_plugins/commit/2a547eb3f0093160279fbc9de21dde3f3ff75c81))
+
 ## 9.0.0
 
 > Note: This release has breaking changes.

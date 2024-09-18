@@ -1,12 +1,10 @@
 # share_plus
 
-[![Flutter Community: share_plus](https://fluttercommunity.dev/_github/header/share_plus)](https://github.com/fluttercommunity/community)
-
 [![share_plus](https://github.com/fluttercommunity/plus_plugins/actions/workflows/share_plus.yaml/badge.svg)](https://github.com/fluttercommunity/plus_plugins/actions/workflows/share_plus.yaml)
 [![pub points](https://img.shields.io/pub/points/share_plus?color=2E8B57&label=pub%20points)](https://pub.dev/packages/share_plus/score)
 [![pub package](https://img.shields.io/pub/v/share_plus.svg)](https://pub.dev/packages/share_plus)
 
-<a href="https://flutter.dev/docs/development/packages-and-plugins/favorites" target="_blank" rel="noreferrer noopener"><img src="../../../website/static/img/flutter-favorite-badge.png" width="100" alt="build"></a>
+[<img src="../../../assets/flutter-favorite-badge.png" width="100" />](https://flutter.dev/docs/development/packages-and-plugins/favorites)
 
 A Flutter plugin to share content from your Flutter app via the platform's
 share dialog.
@@ -25,6 +23,17 @@ on iOS, or equivalent platform content sharing methods.
 Also compatible with Windows and Linux by using "mailto" to share text via Email.
 
 Sharing files is not supported on Linux.
+
+## Requirements
+
+- Flutter >=3.19.0
+- Dart >=3.3.0 <4.0.0
+- iOS >=12.0
+- MacOS >=10.14
+- Android `compileSDK` 34
+- Java 17
+- Android Gradle Plugin >=8.3.0
+- Gradle wrapper >=8.4
 
 ## Usage
 
@@ -81,7 +90,7 @@ if (result.status == ShareResultStatus.dismissed) {
 }
 ```
 
-On web, you can use `SharePlus.shareXFiles()`. This uses the [Web Share API](https://web.dev/web-share/)
+On web, this uses the [Web Share API](https://web.dev/web-share/)
 if it's available. Otherwise it falls back to downloading the shared files.
 See [Can I Use - Web Share API](https://caniuse.com/web-share) to understand
 which browsers are supported. This builds on the [`cross_file`](https://pub.dev/packages/cross_file)
@@ -91,6 +100,19 @@ package.
 ```dart
 Share.shareXFiles([XFile('assets/hello.txt')], text: 'Great picture');
 ```
+
+#### Share Data
+
+You can also share files that you dynamically generate from its data using [`XFile.fromData`](https://pub.dev/documentation/share_plus/latest/share_plus/XFile/XFile.fromData.html).
+
+To set the name of such files, use the `fileNameOverrides` parameter, otherwise the file name will be a random UUID string.
+
+```dart
+Share.shareXFiles([XFile.fromData(utf8.encode(text), mimeType: 'text/plain')], fileNameOverrides: ['myfile.txt']);
+```
+
+> [!CAUTION]
+> The `name` parameter in the `XFile.fromData` method is ignored in most platforms. Use `fileNameOverrides` instead.
 
 ### Share URI
 
@@ -124,13 +146,21 @@ Alternatively, don't use `XFile.fromData` and instead write the data down to a `
 
 ### Mobile platforms (Android and iOS)
 
-#### Meta (WhatsApp, Instagram, Facebook Messenger) and similar apps
+#### Sharing images + text
 
-Due to restrictions set up by Meta/Facebook this plugin isn't capable of sharing data reliably to Facebook related apps on Android and iOS. This includes eg. sharing text to the Facebook Messenger. If you require this functionality please check the native Facebook Sharing SDK ([https://developers.facebook.com/docs/sharing](https://developers.facebook.com/docs/sharing)) or search for other Flutter plugins implementing this SDK. More information can be found in [this issue](https://github.com/fluttercommunity/plus_plugins/issues/413).
+When attempting to share images with text, some apps may fail to properly accept the share action with them.
+
+For example, due to restrictions set up by Meta/Facebook this plugin isn't capable of sharing data reliably
+to Facebook related apps on Android and iOS. This includes eg. sharing text to the Facebook Messenger.
+
+If you require this functionality please check the native Facebook Sharing SDK ([https://developers.facebook.com/docs/sharing](https://developers.facebook.com/docs/sharing))
+or search for other Flutter plugins implementing this SDK. More information can be found in [this issue](https://github.com/fluttercommunity/plus_plugins/issues/413).
 
 Other apps may also give problems when attempting to share content to them.
+This is because 3rd party app developers do not properly implement the logic to receive share actions.
+
 We cannot warranty that a 3rd party app will properly implement the share functionality.
-Therefore, all bugs reported regarding compatibility with a specific app will be closed.
+Therefore, **all bugs reported regarding compatibility with a specific app will be closed.**
 
 #### Localization in Apple platforms
 
@@ -177,4 +207,3 @@ See the `main.dart` in the `example` for a complete example.
 ## Learn more
 
 - [API Documentation](https://pub.dev/documentation/share_plus/latest/share_plus/share_plus-library.html)
-- [Plugin documentation website](https://plus.fluttercommunity.dev/docs/share_plus/overview)
