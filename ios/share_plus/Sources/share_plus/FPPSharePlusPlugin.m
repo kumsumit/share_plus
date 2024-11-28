@@ -1,7 +1,7 @@
 // Copyright 2019 The Flutter Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-#import "FPPSharePlusPlugin.h"
+#import "./include/share_plus/FPPSharePlusPlugin.h"
 #import "LinkPresentation/LPLinkMetadata.h"
 #import "LinkPresentation/LPMetadataProvider.h"
 
@@ -228,8 +228,10 @@ TopViewControllerForViewController(UIViewController *viewController) {
     // https://stackoverflow.com/questions/60563773/ios-13-share-sheet-changing-subtitle-item-description
     metadata.originalURL = [NSURL fileURLWithPath:description];
     if (_mimeType && [_mimeType hasPrefix:@"image/"]) {
+      UIImage *image = [UIImage imageWithContentsOfFile:_path];
       metadata.imageProvider = [[NSItemProvider alloc]
-          initWithObject:[UIImage imageWithContentsOfFile:_path]];
+          initWithObject:[self imageWithImage:image
+                                 scaledToSize:CGSizeMake(120, 120)]];
     }
   }
 
