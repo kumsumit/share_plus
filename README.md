@@ -26,8 +26,8 @@ Sharing files is not supported on Linux.
 
 ## Requirements
 
-- Flutter >=3.19.0
-- Dart >=3.3.0 <4.0.0
+- Flutter >=3.22.0
+- Dart >=3.4.0 <4.0.0
 - iOS >=12.0
 - MacOS >=10.14
 - Android `compileSDK` 34
@@ -99,6 +99,12 @@ package.
 
 ```dart
 Share.shareXFiles([XFile('assets/hello.txt')], text: 'Great picture');
+```
+
+File downloading fallback mechanism for web can be disabled by setting:
+
+```dart
+Share.downloadFallbackEnabled = false;
 ```
 
 #### Share Data
