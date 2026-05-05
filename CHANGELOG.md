@@ -1,3 +1,48 @@
+## 13.1.0
+
+ - **FEAT**(share_plus): Lower requirements to Dart 3.10 and Flutter 3.38.1 ([#3801](https://github.com/fluttercommunity/plus_plugins/issues/3801)). ([d965e00e](https://github.com/fluttercommunity/plus_plugins/commit/d965e00e5082d4e32e25cacad0b193a735d51c5f))
+
+## 13.0.0
+
+> Note: This release has breaking changes.
+>
+> Due to an update of win32 to 6.1.0, package requirements were also changed to match this update:
+> - Minimum Flutter version is 3.41.6
+> - Minimum Dart version is 3.11.0
+> - Min iOS is 13.0
+> - Min macOS is 10.15
+>
+> Since this release was already breaking, the rest of the dependencies were also updated to the latest possible versions.
+
+ - **BREAKING** **FEAT**(share_plus): Bump win32 from 5.15.0 to 6.0.0 ([#3762](https://github.com/fluttercommunity/plus_plugins/issues/3762)). ([0e3eb918](https://github.com/fluttercommunity/plus_plugins/commit/0e3eb918e77fcc500b6124167a905f026ffc374a))
+
+## 12.0.2
+
+ - **FIX**(share_plus): Avoid crash on iOS during file and text sharing in add-to-app scenario ([#3738](https://github.com/fluttercommunity/plus_plugins/issues/3738)). ([ae6330bb](https://github.com/fluttercommunity/plus_plugins/commit/ae6330bbf579fe411b503be84fcfc202d2496625))
+
+## 12.0.1
+
+ - **FIX**(share_plus): Avoid crash on iOS 26 on iPhones with no sharePositionOrigin param([#3699](https://github.com/fluttercommunity/plus_plugins/issues/3699)). ([42b079bd](https://github.com/fluttercommunity/plus_plugins/commit/42b079bd5fa56c9983a5a4fcf351190884f5c540))
+
+## 12.0.0
+
+> Note: This release has breaking changes.
+>
+> On Android plugin now requires the following:
+> - Android Gradle Plugin >=8.12.1
+> - Gradle wrapper >=8.13
+> - Kotlin 2.2.0
+
+ - **FIX**(share_plus): unable to get the correct result on iOS ([#3660](https://github.com/fluttercommunity/plus_plugins/issues/3660)). ([3bd253b0](https://github.com/fluttercommunity/plus_plugins/commit/3bd253b04021a932fa79412a5da2318c22cfdbe2))
+ - **DOCS**(all): replace MacOS by macOS in package READMEs ([#3658](https://github.com/fluttercommunity/plus_plugins/issues/3658)). ([72b6234c](https://github.com/fluttercommunity/plus_plugins/commit/72b6234c25315c30d8efc9f15a9258b0bb7273a8))
+ - **BREAKING** **FEAT**(share_plus): Change Android compile SDK, update Android build config ([#3671](https://github.com/fluttercommunity/plus_plugins/issues/3671)). ([24363e27](https://github.com/fluttercommunity/plus_plugins/commit/24363e270d3c8219b9516fe57474a448f6c5fd48))
+
+## 11.1.0
+
+ - **FEAT**(share_plus): Added `excludedCupertinoActivities` share parameter ([#3376](https://github.com/fluttercommunity/plus_plugins/issues/3376)). ([f9fdadb4](https://github.com/fluttercommunity/plus_plugins/commit/f9fdadb41242ad2e36ddbf1ade82be6c5bb78ec4))
+ - **DOCS**(all): improve documentation across multiple README files ([#3630](https://github.com/fluttercommunity/plus_plugins/issues/3630)). ([643e12df](https://github.com/fluttercommunity/plus_plugins/commit/643e12dfe0389dc21b49bd31ec03e7f38844d339))
+ - **DOCS**(share-plus): Update README.md. ([2aa9f7e0](https://github.com/fluttercommunity/plus_plugins/commit/2aa9f7e0c7b471dc581d6fbd334633d16eb2da03))
+
 ## 11.0.0
 
 > Note: This release has breaking changes.

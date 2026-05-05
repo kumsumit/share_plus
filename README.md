@@ -14,7 +14,7 @@ on iOS, or equivalent platform content sharing methods.
 
 ## Platform Support
 
-| Shared content | Android | iOS | MacOS | Web | Linux | Windows |
+| Shared content | Android | iOS | macOS | Web | Linux | Windows |
 | :------------: | :-----: | :-: | :---: | :-: | :---: | :-----: |
 | Text           |   ✅    | ✅  |  ✅   | ✅  |  ✅   |   ✅   |
 | URI            |   ✅    | ✅  |  ✅   | As text | As text | As text |
@@ -26,14 +26,14 @@ Sharing files is not supported on Linux.
 
 ## Requirements
 
-- Flutter >=3.22.0
-- Dart >=3.4.0 <4.0.0
-- iOS >=12.0
-- MacOS >=10.14
-- Android `compileSDK` 34
+- Flutter >=3.38.1
+- Dart >=3.10.0 <4.0.0
+- iOS >=13.0
+- macOS >=10.15
 - Java 17
-- Android Gradle Plugin >=8.3.0
-- Gradle wrapper >=8.4
+- Kotlin 2.2.0
+- Android Gradle Plugin >=8.12.1
+- Gradle wrapper >=8.13
 
 ## Usage
 
@@ -51,6 +51,8 @@ Access the `SharePlus` instance via `SharePlus.instance`.
 Then, invoke the `share()` method anywhere in your Dart code.
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+
 SharePlus.instance.share(
   ShareParams(text: 'check out my website https://example.com')
 );
@@ -83,9 +85,12 @@ To share one or multiple files, provide the `files` list in `ShareParams`.
 Optionally, you can pass `title`, `text` and `sharePositionOrigin`.
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+import 'package:cross_file/cross_file.dart';
+
 final params = ShareParams(
   text: 'Great picture',
-  files: [XFile('${directory.path}/image.jpg')], 
+  files: [XFile('${directory.path}/image.jpg')],
 );
 
 final result = await SharePlus.instance.share(params);
@@ -96,9 +101,12 @@ if (result.status == ShareResultStatus.success) {
 ```
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+import 'package:cross_file/cross_file.dart';
+
 final params = ShareParams(
   files: [
-    XFile('${directory.path}/image1.jpg'), 
+    XFile('${directory.path}/image1.jpg'),
     XFile('${directory.path}/image2.jpg'),
   ],
 );
@@ -119,6 +127,8 @@ package.
 File downloading fallback mechanism for web can be disabled by setting:
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+
 ShareParams(
   // rest of params
   downloadFallbackEnabled: false,
@@ -132,8 +142,12 @@ You can also share files that you dynamically generate from its data using [`XFi
 To set the name of such files, use the `fileNameOverrides` parameter, otherwise the file name will be a random UUID string.
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+import 'package:cross_file/cross_file.dart';
+import 'dart:convert';
+
 final params = ShareParams(
-  files: [XFile.fromData(utf8.encode(text), mimeType: 'text/plain')], 
+  files: [XFile.fromData(utf8.encode(text), mimeType: 'text/plain')],
   fileNameOverrides: ['myfile.txt']
 );
 
@@ -150,6 +164,8 @@ This special functionality is only properly supported on iOS.
 On other platforms, the URI will be shared as plain text.
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+
 final params = ShareParams(uri: uri);
 
 SharePlus.instance.share(params);
@@ -163,6 +179,48 @@ All three methods return a `ShareResult` object which contains the following inf
 - `raw`: a `String` describing the share result, e.g. the opening app ID.
 
 Note: `status` will be `ShareResultStatus.unavailable` if the platform does not support identifying the user action.
+
+### Other Parameters
+
+#### Title
+
+Used as share sheet title where supported.
+
+- Provided to Android's `Intent.createChooser` as the title, as well as, `EXTRA_TITLE` Intent extra.
+- Provided to web Navigator Share API as title.
+
+```dart
+ShareParams(
+  // rest of params
+  title: 'Title',
+)
+```
+
+#### Subject
+
+Used as email subject where supported (e.g. `EXTRA_SUBJECT` on Android)
+
+When using the email fallback, this will be the subject of the email.
+
+```dart
+ShareParams(
+  // rest of params
+  subject: 'Subject',
+)
+```
+
+#### Excluded Cupertino Activities
+
+On iOS or macOS, if you want to exclude certain options from appearing in your share sheet, you can set the `excludedCupertinoActivities` array.
+
+For the list of supported `excludedCupertinoActivities`, refer to [CupertinoActivityType](https://pub.dev/documentation/share_plus/latest/share_plus/ShareParams-class.html).
+
+```dart
+ShareParams(
+  // rest of params
+  excludedCupertinoActivities: [CupertinoActivityType.postToFacebook],
+)
+```
 
 ## Known Issues
 
@@ -191,7 +249,7 @@ or search for other Flutter plugins implementing this SDK. More information can 
 Other apps may also give problems when attempting to share content to them.
 This is because 3rd party app developers do not properly implement the logic to receive share actions.
 
-We cannot warranty that a 3rd party app will properly implement the share functionality.
+We cannot guarantee that a 3rd party app will properly implement the share functionality.
 Therefore, **all bugs reported regarding compatibility with a specific app will be closed.**
 
 #### Localization in Apple platforms
@@ -207,7 +265,7 @@ For more information check the [CoreFoundationKeys](https://developer.apple.com/
 `share_plus` requires iPad users to provide the `sharePositionOrigin` parameter.
 
 Without it, `share_plus` will not work on iPads and may cause a crash or
-letting the UI not responding.
+leave the UI unresponsive.
 
 To avoid that problem, provide the `sharePositionOrigin`.
 
@@ -250,6 +308,8 @@ To convert code using `Share.share()` to the new `SharePlus` class:
 e.g.
 
 ```dart
+import 'package:share/share.dart';
+
 Share.share("Shared text");
 
 Share.shareUri("http://example.com");
@@ -260,6 +320,8 @@ Share.shareXFiles(files);
 Becomes:
 
 ```dart
+import 'package:share_plus/share_plus.dart';
+
 SharePlus.instance.share(
   ShareParams(text: "Shared text"),
 );
