@@ -9,7 +9,6 @@ group = "dev.fluttercommunity.plus.share"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    mavenLocal()
     google()
     mavenCentral()
 }
@@ -23,22 +22,22 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_21)
-        }
-    }
-
     defaultConfig {
         minSdk = 19
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
+    lint {
+        disable += "InvalidPackage"
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_21)
     }
 }
 
 dependencies {
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:2.3.21"
-    }
+    implementation(kotlin("stdlib"))
+}
